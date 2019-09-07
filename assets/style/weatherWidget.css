@@ -1,0 +1,32 @@
+body {
+    background-color: darkgray;
+}
+
+#forecastContainer {
+    margin: 5px 3% 5px 3%;
+    border: solid black 2px;
+    background-color: white;
+    color: black;
+    border-radius: 4px;
+    position: absolute;
+    display: inline-flexbox;
+    width: 94%;
+    height: auto;
+    text-align: center;
+}
+
+#currentWeather {
+    position: relative;
+    float:left;
+    width: 28%;
+    text-align: center;
+}
+
+.fiveDayWeather {
+    position: relative;
+    float:left;
+    width: 14%;
+    height:auto;
+    border-left: solid black 2px;
+    text-align: center;
+}
