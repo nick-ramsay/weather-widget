@@ -1,32 +1,67 @@
 body {
     background-color: darkgray;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 #forecastContainer {
     margin: 5px 3% 5px 3%;
-    border: solid black 2px;
     background-color: white;
     color: black;
     border-radius: 4px;
     position: absolute;
-    display: inline-flexbox;
     width: 94%;
     height: auto;
     text-align: center;
+    overflow: hidden;
 }
 
 #currentWeather {
     position: relative;
     float:left;
-    width: 28%;
+    width: 30%;
     text-align: center;
+    overflow: hidden;
 }
 
-.fiveDayWeather {
+.fiveDayWeatherOdd, .fiveDayWeatherEven {
     position: relative;
     float:left;
     width: 14%;
     height:auto;
-    border-left: solid black 2px;
     text-align: center;
+    overflow: hidden;
+}
+
+.fiveDayWeatherOdd {
+    background-color: lightgrey;
+}
+
+@media (max-width:768px) {
+    #forecastContainer {
+        width: 80%;
+        margin: 10%;
+    }
+
+    #currentWeather {
+        width: 100%;
+    }
+
+    .fiveDayWeatherOdd, .fiveDayWeatherEven {
+        width: 20%;
+    }
+}
+
+@media (max-width:640px) {
+    #forecastContainer {
+        width: 50%;
+        margin: 25%;
+    }
+
+    #currentWeather {
+        width: 100%;
+    }
+
+    .fiveDayWeatherOdd, .fiveDayWeatherEven {
+        width: 100%;
+    }
 }
