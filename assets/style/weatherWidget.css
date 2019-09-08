@@ -21,7 +21,14 @@ body {
     width: 30%;
     text-align: center;
     overflow: hidden;
+    height:100%;
 }
+
+#currentWeatherCity, #currentWeatherIcon, #currentWeatherConditions {
+    width: 33%;
+    float:left;
+}
+
 
 .fiveDayWeatherOdd, .fiveDayWeatherEven {
     position: relative;
@@ -30,6 +37,7 @@ body {
     height:auto;
     text-align: center;
     overflow: hidden;
+    height: 100%;
 }
 
 .fiveDayWeatherOdd {
