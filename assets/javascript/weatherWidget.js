@@ -1,7 +1,6 @@
 var currentWeather = {
     cityName: "",
     date: "",
-    dateText: "",
     currentTempKel: 0,
     currentTempFahr: 0,
     longDescription: "",
@@ -13,8 +12,6 @@ var currentWeather = {
 
 var dayOneWeather = {
     date: "",
-    dateText: "",
-    dateDayOfWeek: "",
     minTemps: [],
     maxTemps: [],
     iconID: "",
@@ -24,49 +21,22 @@ var dayOneWeather = {
 function getForecastData() {
     var cityID = 2147714;
 
-    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?id=" + cityID + "&APPID=6ed710fd46d2b25fcb9bcb59177fa39a";
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?id=" + cityID + "&APPID=6ed710fd46d2b25fcb9bcb59177fa39a";
     console.log(queryURL);
 
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then(function (response) {
-        currentWeather.cityName = response.city.name,
-        currentWeather.date = response.list[0].dt_txt;
-        currentWeather.currentTempKel = response.list[0].main.temp;
+        currentWeather.cityName = response.name,
+        currentWeather.date = response.dt;
+        currentWeather.currentTempKel = response.main.temp;
         currentWeather.currentTempFahr = Math.floor((currentWeather.currentTempKel - 273.15) * (9/5) + 32),
-        currentWeather.longDescription = response.list[0].weather.description;
-        currentWeather.shortDescription = response.list[0].weather[0].main;
-        currentWeather.iconID = response.list[0].weather[0].icon;
-        currentWeather.iconURL = "http://openweathermap.org/img/wn/" + response.list[0].weather[0].icon + "@2x.png";
-
-        var currentDate = new Date(currentWeather.date);
-        var dayOne = new Date(currentDate.getFullYear() + "-" + currentDate.getMonth() + "-" + currentDate.getDate());
-        console.log(dayOne);
-        dayOne = new Date(dayOne.setDate(currentDate.getDate() + 1))
-
-        console.log(dayOne);
-
-        console.log(new Date(response.list[10].dt_txt))
-
-        for (i=0; new Date(response.list[i].dt_txt) === dayOne; i++) {
-            console.log("Test Day One");
-        }
-
-        var dayTwo = currentDate;
-        dayTwo = new Date(dayOne.setDate(currentDate.getDate()+ 2))
-
-        var dayThree = currentDate;
-        dayThree = new Date(dayThree.setDate(currentDate.getDate()+ 3))
-
-        var dayFour = currentDate;
-        dayFour = new Date(dayFour.setDate(currentDate.getDate()+ 4))
-
-        var dayFive = currentDate;
-        dayFive = new Date(dayFive.setDate(currentDate.getDate()+ 5))
-
+        currentWeather.longDescription = response.weather[0].description;
+        currentWeather.shortDescription = response.weather[0].main;
+        currentWeather.iconID = response.weather[0].icon;
+        currentWeather.iconURL = "http://openweathermap.org/img/wn/" + response.weather[0].icon + "@2x.png";
         renderForecastData();
-        
     })
 }
 
