@@ -59,6 +59,7 @@ body {
 
     .fiveDayWeatherOdd, .fiveDayWeatherEven {
         width: 20%;
+        min-height: none;
     }
 }
 
@@ -80,5 +81,6 @@ body {
 
     .fiveDayWeatherOdd, .fiveDayWeatherEven {
         width: 100%;
+        min-height: none;
     }
 }
