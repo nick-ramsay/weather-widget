@@ -22,7 +22,6 @@ function getForecastData() {
     var cityID = 2147714;
 
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?id=" + cityID + "&APPID=6ed710fd46d2b25fcb9bcb59177fa39a";
-    console.log(queryURL);
 
     $.ajax({
         url: queryURL,
