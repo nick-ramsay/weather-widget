@@ -1,3 +1,6 @@
+var weatherLatitude = -33.8688;
+var weatherLongitude = 151.2093;
+
 var currentWeather = {
     cityName: "",
     countryName: "",
@@ -13,12 +16,13 @@ var currentWeather = {
 
 function kelToFahr(kelvin) {
     return (kelvin - 273.15) * (9 / 5) + 32;
- }
+}
 
 function getCurrentWeather() {
     var cityID = 2147714;
-    
-    var queryURL = "https://api.openweathermap.org/data/2.5/weather?id=" + cityID + "&APPID=6ed710fd46d2b25fcb9bcb59177fa39a";
+
+    //var queryURL = "https://api.openweathermap.org/data/2.5/weather?id=" + cityID + "&APPID=6ed710fd46d2b25fcb9bcb59177fa39a";
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + weatherLatitude + "&lon=" + weatherLongitude + "&APPID=6ed710fd46d2b25fcb9bcb59177fa39a";
 
     $.ajax({
         url: queryURL,
@@ -38,7 +42,7 @@ function getCurrentWeather() {
     })
 }
 
-var daysOfWeek = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+var daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 var dayOneDate = new Date();
 var dayTwoDate = new Date();
@@ -47,27 +51,27 @@ var dayFourDate = new Date();
 var dayFiveDate = new Date();
 
 function calculateForecastDates() {
-    dayOneDate.setDate(dayOneDate.getDate()+1);
+    dayOneDate.setDate(dayOneDate.getDate() + 1);
     dayOneWeather.dayOfWeek = daysOfWeek[dayOneDate.getDay()];
     dayOneDate = dayOneDate.toDateString();
     dayOneWeather.date = dayOneDate;
 
-    dayTwoDate.setDate(dayTwoDate.getDate()+2);
+    dayTwoDate.setDate(dayTwoDate.getDate() + 2);
     dayTwoWeather.dayOfWeek = daysOfWeek[dayTwoDate.getDay()];
     dayTwoDate = dayTwoDate.toDateString();
     dayTwoWeather.date = dayTwoDate;
 
-    dayThreeDate.setDate(dayThreeDate.getDate()+3);
+    dayThreeDate.setDate(dayThreeDate.getDate() + 3);
     dayThreeWeather.dayOfWeek = daysOfWeek[dayThreeDate.getDay()];
     dayThreeDate = dayThreeDate.toDateString();
     dayThreeWeather.date = dayThreeDate;
 
-    dayFourDate.setDate(dayFourDate.getDate()+4);
+    dayFourDate.setDate(dayFourDate.getDate() + 4);
     dayFourWeather.dayOfWeek = daysOfWeek[dayFourDate.getDay()];
     dayFourDate = dayFourDate.toDateString();
     dayFourWeather.date = dayFourDate;
 
-    dayFiveDate.setDate(dayFiveDate.getDate()+5);
+    dayFiveDate.setDate(dayFiveDate.getDate() + 5);
     dayFiveWeather.dayOfWeek = daysOfWeek[dayFiveDate.getDay()];
     dayFiveDate = dayFiveDate.toDateString();
     dayFiveWeather.date = dayFiveDate;
@@ -121,8 +125,8 @@ var dayFiveWeather = {
 
 var forecastData;
 
-function parseForecastData () {
-    for (i=0; i < forecastData.cnt; i++) {
+function parseForecastData() {
+    for (i = 0; i < forecastData.cnt; i++) {
         var forecastDate = new Date(forecastData.list[i].dt * 1000);
         forecastDate = forecastDate.toDateString();
         if (forecastDate === dayOneWeather.date) {
@@ -150,14 +154,16 @@ function parseForecastData () {
             dayFiveWeather.maxTemps.push(Math.floor(kelToFahr(forecastData.list[i].main.temp_max)));
             dayFiveWeather.iconIDs.push(forecastData.list[i].weather[0].icon);
             dayFiveWeather.iconURL = "http://openweathermap.org/img/wn/" + dayFiveWeather.iconIDs[4] + "@2x.png";
-        }  
+        }
     }
+    renderForecastData();
 }
 
 function getForecast() {
     var cityID = 2147714;
 
-    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?id=" + cityID + "&APPID=6ed710fd46d2b25fcb9bcb59177fa39a";
+    //var queryURL = "https://api.openweathermap.org/data/2.5/forecast?id=" + cityID + "&APPID=6ed710fd46d2b25fcb9bcb59177fa39a";
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + weatherLatitude + "&lon=" + weatherLongitude + "&APPID=6ed710fd46d2b25fcb9bcb59177fa39a";
 
     $.ajax({
         url: queryURL,
@@ -165,7 +171,6 @@ function getForecast() {
     }).then(function (forecastResponse) {
         forecastData = forecastResponse;
         parseForecastData();
-        renderForecastData();
     })
 }
 
@@ -180,29 +185,29 @@ function renderForecastData() {
     $("#currentWeatherConditions").append(currentWeatherConditions);
 
     $("#dayOneDow").text(dayOneWeather.dayOfWeek);
-    $("#dayOneLow").text(Math.min.apply(null,dayOneWeather.minTemps) + '°F');
-    $("#dayOneHigh").text(Math.max.apply(null,dayOneWeather.maxTemps) + '°F');
+    $("#dayOneLow").text(Math.min.apply(null, dayOneWeather.minTemps) + '°F');
+    $("#dayOneHigh").text(Math.max.apply(null, dayOneWeather.maxTemps) + '°F');
     var dayOneIcon = $('<img class="forecastIcon" id="dayOneIcon" alt="Forecast #1 Icon">');
     $(dayOneIcon).attr("src", dayOneWeather.iconURL);
     $("#dayOneIconDiv").append(dayOneIcon);
 
     $("#dayTwoDow").text(dayTwoWeather.dayOfWeek);
-    $("#dayTwoLow").text(Math.min.apply(null,dayTwoWeather.minTemps) + '°F');
-    $("#dayTwoHigh").text(Math.max.apply(null,dayTwoWeather.maxTemps) + '°F');
+    $("#dayTwoLow").text(Math.min.apply(null, dayTwoWeather.minTemps) + '°F');
+    $("#dayTwoHigh").text(Math.max.apply(null, dayTwoWeather.maxTemps) + '°F');
     var dayTwoIcon = $('<img class="forecastIcon" id="dayTwoIcon" alt="Forecast #2 Icon">');
     $(dayTwoIcon).attr("src", dayTwoWeather.iconURL);
     $("#dayTwoIconDiv").append(dayTwoIcon);
 
     $("#dayThreeDow").text(dayThreeWeather.dayOfWeek);
-    $("#dayThreeLow").text(Math.min.apply(null,dayThreeWeather.minTemps) + '°F');
-    $("#dayThreeHigh").text(Math.max.apply(null,dayThreeWeather.maxTemps) + '°F');
+    $("#dayThreeLow").text(Math.min.apply(null, dayThreeWeather.minTemps) + '°F');
+    $("#dayThreeHigh").text(Math.max.apply(null, dayThreeWeather.maxTemps) + '°F');
     var dayThreeIcon = $('<img class="forecastIcon" id="dayThreeIcon" alt="Forecast #3 Icon">');
     $(dayThreeIcon).attr("src", dayThreeWeather.iconURL);
     $("#dayThreeIconDiv").append(dayThreeIcon);
 
     $("#dayFourDow").text(dayFourWeather.dayOfWeek);
-    $("#dayFourLow").text(Math.min.apply(null,dayFourWeather.minTemps) + '°F');
-    $("#dayFourHigh").text(Math.max.apply(null,dayFourWeather.maxTemps) + '°F');
+    $("#dayFourLow").text(Math.min.apply(null, dayFourWeather.minTemps) + '°F');
+    $("#dayFourHigh").text(Math.max.apply(null, dayFourWeather.maxTemps) + '°F');
     var dayFourIcon = $('<img class="forecastIcon" id="dayFourIcon" alt="Forecast #4 Icon">');
     $(dayFourIcon).attr("src", dayFourWeather.iconURL);
     $("#dayFourIconDiv").append(dayFourIcon);
