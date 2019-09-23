@@ -39,6 +39,13 @@ body {
     float:left;
 }
 
+#currentWeatherCity {
+    color: black;
+}
+
+#currentTemp {
+    color: black;
+}
 
 .fiveDayWeatherOdd, .fiveDayWeatherEven {
     position: relative;
@@ -60,6 +67,7 @@ body {
     line-height: 10px;
     padding:0;
     margin: 5px;
+    color: black;
 }
 
 .forecastIcon {
