@@ -168,7 +168,7 @@ function getForecast() {
 }
 
 function renderForecastData() {
-    var currentWeatherCity = $("<p style='font-weight: bold;'>" + currentWeather.cityName + "</p><p style='font-size: 12px;'>Weather</p>");
+    var currentWeatherCity = $("<p id='cityName'>" + currentWeather.cityName + "</p>");
     $("#currentWeatherCity").append(currentWeatherCity);
     var currentWeatherIcon = $("<img>");
     $(currentWeatherIcon).attr("src", currentWeather.iconURL);
