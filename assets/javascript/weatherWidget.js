@@ -1,5 +1,6 @@
 var currentWeather = {
     cityName: "",
+    countryName: "",
     date: "",
     currentTempKel: 0,
     currentTempFahr: 0,
@@ -23,7 +24,9 @@ function getCurrentWeather() {
         url: queryURL,
         method: "GET"
     }).then(function (response) {
+        console.log(response);
         currentWeather.cityName = response.name;
+        currentWeather.countryName = response.sys.country;
         currentWeather.date = response.dt;
         currentWeather.currentTempKel = response.main.temp;
         currentWeather.currentTempFahr = Math.floor(kelToFahr(currentWeather.currentTempKel));
@@ -119,7 +122,6 @@ var dayFiveWeather = {
 var forecastData;
 
 function parseForecastData () {
-    console.log(forecastData);
     for (i=0; i < forecastData.cnt; i++) {
         var forecastDate = new Date(forecastData.list[i].dt * 1000);
         forecastDate = forecastDate.toDateString();
@@ -160,21 +162,21 @@ function getForecast() {
     $.ajax({
         url: queryURL,
         method: "GET"
-    }).then(function (response) {
-        forecastData = response;
+    }).then(function (forecastResponse) {
+        forecastData = forecastResponse;
         parseForecastData();
         renderForecastData();
     })
 }
 
 function renderForecastData() {
-    var currentWeatherCity = $("<p id='cityName'>" + currentWeather.cityName + "</p>");
+    var currentWeatherCity = $('<p id="cityName">' + currentWeather.cityName + '</p><p id="countryName"><p id="countryName">' + currentWeather.countryName + '</p>');
     $("#currentWeatherCity").append(currentWeatherCity);
     var currentWeatherIcon = $("<img>");
     $(currentWeatherIcon).attr("src", currentWeather.iconURL);
     $(currentWeatherIcon).attr("id", "currentWeatherImg");
     $("#currentWeatherIcon").append(currentWeatherIcon);
-    var currentWeatherConditions = $('<p id="currentTemp">' + currentWeather.currentTempFahr + '°F</p><p style="padding:0; margin:0;font-size: 12px">' + currentWeather.shortDescription + '</p>');
+    var currentWeatherConditions = $('<p id="currentTemp">' + currentWeather.currentTempFahr + '°F</p><p id="currentDescription">' + currentWeather.shortDescription + '</p>');
     $("#currentWeatherConditions").append(currentWeatherConditions);
 
     $("#dayOneDow").text(dayOneWeather.dayOfWeek);

@@ -1,5 +1,5 @@
 body {
-    background-color: indigo;
+    background-color: rebeccapurple;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     margin:0;
     padding:0;
@@ -8,8 +8,8 @@ body {
 #forecastContainer {
     margin: 5px 3% 5px 3%;
     background-color: white;
-    color: #cd7f32;
-    border: #cd7f32 2px solid;
+    color: black;
+    border: forestgreen 2px solid;
     border-radius: 4px;
     position: absolute;
     width: 94%;
@@ -32,6 +32,7 @@ body {
 #cityName, #currentTemp {
     font-size: 20px;
     font-weight: bolder;
+    line-height: 5px;
 }
 
 #currentWeatherCity, #currentWeatherIcon, #currentWeatherConditions {
@@ -39,13 +40,6 @@ body {
     float:left;
 }
 
-#currentWeatherCity {
-    color: black;
-}
-
-#currentTemp {
-    color: black;
-}
 
 .fiveDayWeatherOdd, .fiveDayWeatherEven {
     position: relative;
@@ -65,9 +59,8 @@ body {
 .forecastDow {
     font-weight: bolder;
     line-height: 10px;
-    padding:0;
+    padding: 5px 0 0 0;
     margin: 5px;
-    color: black;
 }
 
 .forecastIcon {
@@ -78,13 +71,13 @@ body {
 .forecastLow {
     float: left;
     color: blue;
-    padding: 0px 0px 0px 15px;
+    padding: 0px 0px 10px 20px;
 }
 
 .forecastHigh {
     float:right;
     color: red;
-    padding: 0px 15px 0px 0px;
+    padding: 0px 20px 10px 0px;
 }
 
 @media (max-width:768px) {
@@ -115,8 +108,8 @@ body {
     }
 
     #currentWeatherImg {
-        width: 64px;
-        height: 64px;
+        width: 85px;
+        height: 85px;
         padding: 0;
     }
 
