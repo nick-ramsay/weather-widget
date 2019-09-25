@@ -96,7 +96,7 @@ body {
 @media (max-width:640px) {
     #forecastContainer {
         width: 80%;
-        margin: 20% 10% 0 10%;
+        margin: 5% 10% 0 10%;
         padding:0;
     }
 
