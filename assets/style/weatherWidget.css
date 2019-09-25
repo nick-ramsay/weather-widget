@@ -67,12 +67,14 @@ body {
     float: left;
     color: blue;
     padding: 0px 0px 10px 20px;
+    font-weight: bold;
 }
 
 .forecastHigh {
     float:right;
     color: red;
     padding: 0px 20px 10px 0px;
+    font-weight: bold;
 }
 
 @media (max-width:768px) {
