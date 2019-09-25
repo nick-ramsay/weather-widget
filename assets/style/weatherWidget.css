@@ -51,10 +51,6 @@ body {
     min-height: 104px;
 }
 
-.fiveDayWeatherOdd {
-    background-color: #f9f9f9;
-}
-
 .forecastDow {
     font-weight: bolder;
     line-height: 10px;
