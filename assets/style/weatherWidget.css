@@ -1,5 +1,5 @@
 body {
-    background-color: rebeccapurple;
+    background-color: #582c83;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     margin:0;
     padding:0;
@@ -9,8 +9,7 @@ body {
     margin: 5px 3% 5px 3%;
     background-color: white;
     color: black;
-    border: forestgreen 2px solid;
-    border-radius: 4px;
+    border-radius: 20px;
     position: absolute;
     width: 94%;
     height: auto;
