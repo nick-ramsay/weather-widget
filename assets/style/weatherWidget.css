@@ -103,11 +103,12 @@ body {
         width: 80%;
         margin: 5% 10% 0 10%;
         padding:0;
-        max-height:24%;
+        max-height:80%;
     }
 
     #currentWeather {
         width: 100%;
+        max-height:80%;
     }
 
     #currentWeatherImg {
@@ -119,6 +120,6 @@ body {
     .fiveDayWeatherOdd, .fiveDayWeatherEven {
         width: 100%;
         min-height: none;
-        max-height: 19%;
+        max-height: 80%;
     }
 }
