@@ -17,6 +17,7 @@ body {
     position: absolute;
     width: 94%;
     height: auto;
+    max-height: 80%;
     text-align: center;
     overflow: hidden;
 }
