@@ -1,16 +1,13 @@
-html { 
-  background: url("../clouds.jpg"); 
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
-}
-
 body {
-    height: 100%;
     font-family: 'Montserrat', sans-serif;
     margin:0;
     padding:0;
+    min-height: 100vh;
+    background: url("../clouds.jpg"); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 #forecastContainer {
