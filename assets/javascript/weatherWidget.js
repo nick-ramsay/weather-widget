@@ -11,72 +11,7 @@ var currentWeather = {
     shortDescription: "",
     iconID: "",
     iconURL: ""
-    //iconURL: "http://openweathermap.org/img/wn/" + this.iconID + "@2x.png"
 }
-
-function kelToFahr(kelvin) {
-    return (kelvin - 273.15) * (9 / 5) + 32;
-}
-
-function getCurrentWeather() {
-    var cityID = 2147714;
-
-    //var queryURL = "https://api.openweathermap.org/data/2.5/weather?id=" + cityID + "&APPID=6ed710fd46d2b25fcb9bcb59177fa39a";
-    var queryURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + weatherLatitude + "&lon=" + weatherLongitude + "&APPID=6ed710fd46d2b25fcb9bcb59177fa39a";
-
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function (response) {
-        console.log(response);
-        currentWeather.cityName = response.name;
-        currentWeather.countryName = response.sys.country;
-        currentWeather.date = response.dt;
-        currentWeather.currentTempKel = response.main.temp;
-        currentWeather.currentTempFahr = Math.floor(kelToFahr(currentWeather.currentTempKel));
-        currentWeather.longDescription = response.weather[0].description;
-        currentWeather.shortDescription = response.weather[0].main;
-        currentWeather.iconID = response.weather[0].icon;
-        currentWeather.iconURL = "http://openweathermap.org/img/wn/" + response.weather[0].icon + "@2x.png";
-        calculateForecastDates();
-    })
-}
-
-var daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-
-var dayOneDate = new Date();
-var dayTwoDate = new Date();
-var dayThreeDate = new Date();
-var dayFourDate = new Date();
-var dayFiveDate = new Date();
-
-function calculateForecastDates() {
-    dayOneDate.setDate(dayOneDate.getDate() + 1);
-    dayOneWeather.dayOfWeek = daysOfWeek[dayOneDate.getDay()];
-    dayOneDate = dayOneDate.toDateString();
-    dayOneWeather.date = dayOneDate;
-
-    dayTwoDate.setDate(dayTwoDate.getDate() + 2);
-    dayTwoWeather.dayOfWeek = daysOfWeek[dayTwoDate.getDay()];
-    dayTwoDate = dayTwoDate.toDateString();
-    dayTwoWeather.date = dayTwoDate;
-
-    dayThreeDate.setDate(dayThreeDate.getDate() + 3);
-    dayThreeWeather.dayOfWeek = daysOfWeek[dayThreeDate.getDay()];
-    dayThreeDate = dayThreeDate.toDateString();
-    dayThreeWeather.date = dayThreeDate;
-
-    dayFourDate.setDate(dayFourDate.getDate() + 4);
-    dayFourWeather.dayOfWeek = daysOfWeek[dayFourDate.getDay()];
-    dayFourDate = dayFourDate.toDateString();
-    dayFourWeather.date = dayFourDate;
-
-    dayFiveDate.setDate(dayFiveDate.getDate() + 5);
-    dayFiveWeather.dayOfWeek = daysOfWeek[dayFiveDate.getDay()];
-    dayFiveDate = dayFiveDate.toDateString();
-    dayFiveWeather.date = dayFiveDate;
-}
-
 
 var dayOneWeather = {
     date: "",
@@ -123,7 +58,89 @@ var dayFiveWeather = {
     iconURL: ""
 }
 
+var daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+var dayOneDate = new Date();
+var dayTwoDate = new Date();
+var dayThreeDate = new Date();
+var dayFourDate = new Date();
+var dayFiveDate = new Date();
+
+function kelToFahr(kelvin) {
+    return (kelvin - 273.15) * (9 / 5) + 32;
+}
+
+function getWeeklyDates() {
+    dayOneDate = new Date();
+    dayTwoDate = new Date();
+    dayThreeDate = new Date();
+    dayFourDate = new Date();
+    dayFiveDate = new Date();
+};
+
+function calculateForecastDates() {
+    dayOneDate.setDate(dayOneDate.getDate() + 1);
+    dayOneWeather.dayOfWeek = daysOfWeek[dayOneDate.getDay()];
+    dayOneDate = dayOneDate.toDateString();
+    dayOneWeather.date = dayOneDate;
+
+    dayTwoDate.setDate(dayTwoDate.getDate() + 2);
+    dayTwoWeather.dayOfWeek = daysOfWeek[dayTwoDate.getDay()];
+    dayTwoDate = dayTwoDate.toDateString();
+    dayTwoWeather.date = dayTwoDate;
+
+    dayThreeDate.setDate(dayThreeDate.getDate() + 3);
+    dayThreeWeather.dayOfWeek = daysOfWeek[dayThreeDate.getDay()];
+    dayThreeDate = dayThreeDate.toDateString();
+    dayThreeWeather.date = dayThreeDate;
+
+    dayFourDate.setDate(dayFourDate.getDate() + 4);
+    dayFourWeather.dayOfWeek = daysOfWeek[dayFourDate.getDay()];
+    dayFourDate = dayFourDate.toDateString();
+    dayFourWeather.date = dayFourDate;
+
+    dayFiveDate.setDate(dayFiveDate.getDate() + 5);
+    dayFiveWeather.dayOfWeek = daysOfWeek[dayFiveDate.getDay()];
+    dayFiveDate = dayFiveDate.toDateString();
+    dayFiveWeather.date = dayFiveDate;
+}
+
+function getCurrentWeather() {
+    getWeeklyDates();
+
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + weatherLatitude + "&lon=" + weatherLongitude + "&APPID=6ed710fd46d2b25fcb9bcb59177fa39a";
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function (response) {
+        console.log(response);
+        currentWeather.cityName = response.name;
+        currentWeather.countryName = response.sys.country;
+        currentWeather.date = response.dt;
+        currentWeather.currentTempKel = response.main.temp;
+        currentWeather.currentTempFahr = Math.floor(kelToFahr(currentWeather.currentTempKel));
+        currentWeather.longDescription = response.weather[0].description;
+        currentWeather.shortDescription = response.weather[0].main;
+        currentWeather.iconID = response.weather[0].icon;
+        currentWeather.iconURL = "http://openweathermap.org/img/wn/" + response.weather[0].icon + "@2x.png";
+        calculateForecastDates();
+    })
+}
+
 var forecastData;
+
+function getForecast() {
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + weatherLatitude + "&lon=" + weatherLongitude + "&APPID=6ed710fd46d2b25fcb9bcb59177fa39a";
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function (forecastResponse) {
+        forecastData = forecastResponse;
+        parseForecastData();
+    })
+}
 
 function parseForecastData() {
     for (i = 0; i < forecastData.cnt; i++) {
@@ -157,21 +174,6 @@ function parseForecastData() {
         }
     }
     renderForecastData();
-}
-
-function getForecast() {
-    var cityID = 2147714;
-
-    //var queryURL = "https://api.openweathermap.org/data/2.5/forecast?id=" + cityID + "&APPID=6ed710fd46d2b25fcb9bcb59177fa39a";
-    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + weatherLatitude + "&lon=" + weatherLongitude + "&APPID=6ed710fd46d2b25fcb9bcb59177fa39a";
-
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function (forecastResponse) {
-        forecastData = forecastResponse;
-        parseForecastData();
-    })
 }
 
 function renderForecastData() {
@@ -215,3 +217,4 @@ function renderForecastData() {
 
 window.onload = getCurrentWeather();
 window.onload = getForecast();
+window.onload = getLocation();
