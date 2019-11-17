@@ -177,6 +177,13 @@ function parseForecastData() {
 }
 
 function renderForecastData() {
+    $("#currentWeatherCity").empty();
+    $("#currentWeatherIcon").empty();
+    $("#currentWeatherConditions").empty();
+    $(".forecastDow").empty();
+    $(".forecastIconDiv").empty();
+    $(".forecastLow").empty();
+    $(".forecastHigh").empty();
     var currentWeatherCity = $('<p id="cityName">' + currentWeather.cityName + '</p><p id="countryName"><p id="countryName">' + currentWeather.countryName + '</p>');
     $("#currentWeatherCity").append(currentWeatherCity);
     var currentWeatherIcon = $("<img>");

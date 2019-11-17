@@ -16,14 +16,6 @@ function showPosition(position) {
   currentLongitude = position.coords.longitude;
   weatherLongitude = position.coords.longitude;
 
-  $("#currentWeatherCity").empty();
-  $("#currentWeatherIcon").empty();
-  $("#currentWeatherConditions").empty();
-  $(".forecastDow").empty();
-  $(".forecastIconDiv").empty();
-  $(".forecastLow").empty();
-  $(".forecastHigh").empty();
-
   getCurrentWeather();
   getForecast();
 
