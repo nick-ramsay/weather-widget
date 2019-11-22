@@ -184,13 +184,13 @@ function renderForecastData() {
     $(".forecastIconDiv").empty();
     $(".forecastLow").empty();
     $(".forecastHigh").empty();
-    var currentWeatherCity = $('<p id="cityName">' + currentWeather.cityName + '</p><p id="countryName"><p id="countryName">' + currentWeather.countryName + '</p>');
+    var currentWeatherCity = $('<p id="locationDetails"><span id="cityName">' + currentWeather.cityName + '</span><span id="country"> ' + currentWeather.countryName + '  </span><a><img id="changeLocation" src="assets/images/location_icon.png"></a></p>');
     $("#currentWeatherCity").append(currentWeatherCity);
     var currentWeatherIcon = $("<img>");
     $(currentWeatherIcon).attr("src", currentWeather.iconURL);
     $(currentWeatherIcon).attr("id", "currentWeatherImg");
     $("#currentWeatherIcon").append(currentWeatherIcon);
-    var currentWeatherConditions = $('<p id="currentTemp">' + currentWeather.currentTempFahr + '°F</p><p id="currentDescription">' + currentWeather.shortDescription + '</p>');
+    var currentWeatherConditions = $('<p id="currentTemp">' + currentWeather.currentTempFahr + '°F</p><p id="currentConditions">' + currentWeather.shortDescription + '</p>');
     $("#currentWeatherConditions").append(currentWeatherConditions);
 
     $("#dayOneDow").text(dayOneWeather.dayOfWeek);
