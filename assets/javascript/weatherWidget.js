@@ -47,7 +47,7 @@ var dayFourWeather = {
     maxTemps: [],
     iconIDs: [],
     iconURL: ""
-}
+};
 
 var dayFiveWeather = {
     date: "",
@@ -56,7 +56,7 @@ var dayFiveWeather = {
     maxTemps: [],
     iconIDs: [],
     iconURL: ""
-}
+};
 
 var daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
@@ -114,7 +114,6 @@ function getCurrentWeather() {
         url: queryURL,
         method: "GET"
     }).then(function (response) {
-        console.log(response);
         currentWeather.cityName = response.name;
         currentWeather.countryName = response.sys.country;
         currentWeather.date = response.dt;
@@ -142,7 +141,31 @@ function getForecast() {
     })
 }
 
+function clearForecastData() {
+    dayOneWeather.minTemps = [];
+    dayOneWeather.maxTemps = [];
+    dayOneWeather.iconIDs = [];
+    dayOneWeather.iconURL = "";
+    
+    dayTwoWeather.minTemps = [];
+    dayTwoWeather.maxTemps = [];
+    dayTwoWeather.iconIDs = [];
+    dayTwoWeather.iconURL = "";
+
+    dayThreeWeather.minTemps = [];
+    dayThreeWeather.maxTemps = [];
+    dayThreeWeather.iconIDs = [];
+    dayThreeWeather.iconURL = "";
+
+    dayFourWeather.minTemps = [];
+    dayFourWeather.maxTemps = [];
+    dayFourWeather.iconIDs = [];
+    dayFourWeather.iconURL = "";
+} 
+
 function parseForecastData() {
+    clearForecastData();
+
     for (i = 0; i < forecastData.cnt; i++) {
         var forecastDate = new Date(forecastData.list[i].dt * 1000);
         forecastDate = forecastDate.toDateString();
@@ -182,8 +205,9 @@ function renderForecastData() {
     $("#currentWeatherConditions").empty();
     $(".forecastDow").empty();
     $(".forecastIconDiv").empty();
-    $(".forecastLow").empty();
     $(".forecastHigh").empty();
+    $(".forecastLow").empty();
+
     var currentWeatherCity = $('<p id="locationDetails"><span id="cityName">' + currentWeather.cityName + '</span><span id="country"> ' + currentWeather.countryName + '  </span><a><img id="changeLocation" src="assets/images/location_icon.png"></a></p>');
     $("#currentWeatherCity").append(currentWeatherCity);
     var currentWeatherIcon = $("<img>");

@@ -10,43 +10,54 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="assets/javascript/location.js"></script>
     <script src="assets/javascript/weatherWidget.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUsqWQiU-SIFRi7Sd4HVtu5qDpwXq4KYE&libraries=places&callback=initAutocomplete" async defer></script>
     <title>Nick's Weather Widget</title>
 </head>
 
 <body>
-    <div id="forecastContainer">
-        <div id="currentWeather">
-            <div id="currentWeatherCity"></div>
-            <div id="currentWeatherIcon"></div>
-            <div id="currentWeatherConditions"></div>
-        </div>
-        <div class="fiveDayWeatherOdd" id="dayOne">
-            <p class="forecastDow" id="dayOneDow"></p>
-            <div class="forecastIconDiv" id="dayOneIconDiv"></div>
-            <div>
-                <span class="forecastLow" id="dayOneLow"></span>
-                <span class="forecastHigh" id="dayOneHigh"></span>
+    <section id="weather">
+        <div id="forecastContainer">
+            <div id="currentWeather">
+                <div id="currentWeatherCity"></div>
+                <div id="currentWeatherIcon"></div>
+                <div id="currentWeatherConditions"></div>
+            </div>
+            <div class="fiveDayWeatherOdd" id="dayOne">
+                <p class="forecastDow" id="dayOneDow"></p>
+                <div class="forecastIconDiv" id="dayOneIconDiv"></div>
+                <div>
+                    <span class="forecastLow" id="dayOneLow"></span>
+                    <span class="forecastHigh" id="dayOneHigh"></span>
+                </div>
+            </div>
+            <div class="fiveDayWeatherEven" id="dayTwo">
+                <p class="forecastDow" id="dayTwoDow"></p>
+                <div class="forecastIconDiv" id="dayTwoIconDiv"></div>
+                <span class="forecastLow" id="dayTwoLow"></span>
+                <span class="forecastHigh" id="dayTwoHigh"></span>
+            </div>
+            <div class="fiveDayWeatherOdd" id="dayThree">
+                <p class="forecastDow" id="dayThreeDow"></p>
+                <div class="forecastIconDiv" id="dayThreeIconDiv"></div>
+                <span class="forecastLow" id="dayThreeLow"></span>
+                <span class="forecastHigh" id="dayThreeHigh"></span>
+            </div>
+            <div class="fiveDayWeatherEven" id="dayFour">
+                <p class="forecastDow" id="dayFourDow"></p>
+                <div class="forecastIconDiv" id="dayFourIconDiv"></div>
+                <span class="forecastLow" id="dayFourLow"></span>
+                <span class="forecastHigh" id="dayFourHigh"></span>
             </div>
         </div>
-        <div class="fiveDayWeatherEven" id="dayTwo">
-            <p class="forecastDow" id="dayTwoDow"></p>
-            <div class="forecastIconDiv" id="dayTwoIconDiv"></div>
-            <span class="forecastLow" id="dayTwoLow"></span>
-            <span class="forecastHigh" id="dayTwoHigh"></span>
+        <div id="locationParameters" style="display: none;">
+            <div class="locationInput" id="locationField">
+                <input id="autocomplete" placeholder="Enter new location" type="text" />
+                <button type="button" class="closeLocationParameters" id="closeLocation">
+                    Cancel
+                </button>
+            </div>
         </div>
-        <div class="fiveDayWeatherOdd" id="dayThree">
-            <p class="forecastDow" id="dayThreeDow"></p>
-            <div class="forecastIconDiv" id="dayThreeIconDiv"></div>
-            <span class="forecastLow" id="dayThreeLow"></span>
-            <span class="forecastHigh" id="dayThreeHigh"></span>
-        </div>
-        <div class="fiveDayWeatherEven" id="dayFour">
-            <p class="forecastDow" id="dayFourDow"></p>
-            <div class="forecastIconDiv" id="dayFourIconDiv"></div>
-            <span class="forecastLow" id="dayFourLow"></span>
-            <span class="forecastHigh" id="dayFourHigh"></span>
-        </div>
-    </div>
+    </section>
 </body>
 
 </html>
