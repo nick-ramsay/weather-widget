@@ -8,9 +8,10 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/style/weatherWidget.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="assets/javascript/location.js"></script>
-    <script src="assets/javascript/weatherWidget.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUsqWQiU-SIFRi7Sd4HVtu5qDpwXq4KYE&libraries=places&callback=initAutocomplete" async defer></script>
+    <script crossorigin="anonymous" src="assets/javascript/location.js"></script>
+    <script crossorigin="anonymous"src="assets/javascript/weatherWidget.js" type="module"></script>
+    <script crossorigin="anonymous"src="assets/javascript/auth.js" type="module"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=${{secrets.GOOGLE_MAPS_API_KEY}}&libraries=places&callback=initAutocomplete" async defer></script>
     <title>Nick's Weather Widget</title>
 </head>
 

@@ -25,7 +25,7 @@ var selectedLatitude = -33.856159;
 var selectedLongitude = 151.215256;
 
 function selectedLocation() {
-  selectedLocationURL = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + selectedLatitude + ',' + selectedLongitude + '&key=AIzaSyCUsqWQiU-SIFRi7Sd4HVtu5qDpwXq4KYE';
+  selectedLocationURL = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + selectedLatitude + ',' + selectedLongitude + '&key=${{secrets.GOOGLE_MAPS_API_KEY}}';
 
   $.ajax({
     url: selectedLocationURL,
@@ -87,7 +87,7 @@ function fillInAddress() {
     addressSearchInput = addressSearchInput + place.address_components[i].long_name + " ";
   }
   addressSearchInput = addressSearchInput.replace(/ /g, "+");
-  newAddressURL = ('https://maps.googleapis.com/maps/api/geocode/json?address=' + addressSearchInput + '&key=AIzaSyCUsqWQiU-SIFRi7Sd4HVtu5qDpwXq4KYE');
+  newAddressURL = ('https://maps.googleapis.com/maps/api/geocode/json?address=' + addressSearchInput + '&key=${{secrets.GOOGLE_MAPS_API_KEY}}');
   changeSelectedAddress();
   locationParametersClose();
 }

@@ -108,7 +108,7 @@ function calculateForecastDates() {
 function getCurrentWeather() {
     getWeeklyDates();
 
-    var queryURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + weatherLatitude + "&lon=" + weatherLongitude + "&APPID=6ed710fd46d2b25fcb9bcb59177fa39a";
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + weatherLatitude + "&lon=" + weatherLongitude + "&APPID=${{secrets.OPEN_WEATHER_API_KEY}}";
 
     $.ajax({
         url: queryURL,
@@ -130,7 +130,7 @@ function getCurrentWeather() {
 var forecastData;
 
 function getForecast() {
-    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + weatherLatitude + "&lon=" + weatherLongitude + "&APPID=6ed710fd46d2b25fcb9bcb59177fa39a";
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + weatherLatitude + "&lon=" + weatherLongitude + "&APPID=${{secrets.OPEN_WEATHER_API_KEY}}";
 
     $.ajax({
         url: queryURL,
